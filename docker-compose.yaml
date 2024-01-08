@@ -1,0 +1,22 @@
+services:
+  # CockroachDB
+  cockroachdb:
+    image: cockroachdb/cockroach:v23.1.0
+    command: start-single-node --insecure
+    volumes:
+      - cockroach-data:/cockroach/cockroach-data
+
+    # Port
+    ports:
+      - "26257:26257"
+      - "8080:8080"
+
+  pyroscope:
+    image: pyroscope/pyroscope:latest
+    ports:
+      - "4040:4040"
+    command: "server"
+
+
+volumes:
+  cockroach-data:
